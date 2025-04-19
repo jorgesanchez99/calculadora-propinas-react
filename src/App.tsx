@@ -1,13 +1,15 @@
 
 import { MenuElement } from "./components/MenuElement"
 import { OrdersContent } from "./components/OrdersContent"
+import { OrderTotal } from "./components/OrderTotal"
+import { TipPercentageForm } from "./components/TipPercentageForm"
 import { menuItems } from "./data/db"
 import useOrder from "./hook/useOrder"
 
 
 function App() {
 
-  const {order,addItem,removeItem} = useOrder()
+  const {order,addItem,removeItem,tip,setTip,placeHorder} = useOrder()
 
 
 
@@ -37,10 +39,32 @@ function App() {
 
 
         <div className="border border-dashed border-slate-300 rounded-lg space-10 p-5">
-          <OrdersContent
-           order={order}
-            removeItem={removeItem}
-          />
+          {order.length > 0 ? (
+            <>
+              <OrdersContent
+                order={order}
+                removeItem={removeItem}
+              />
+
+              <TipPercentageForm
+                setTip={setTip}
+                tip={tip}
+              />
+
+              <OrderTotal
+                order={order}
+                tip={tip}
+                placeHorder={placeHorder}
+              />
+            </>
+          ) : (
+            <>
+              <h2 className="text-4xl font-black">Consumo</h2>
+              <p className="text-center text-2xl mt-10">
+                No hay elementos en el pedido
+              </p>
+            </>
+          )}
         </div>
 
       </main>

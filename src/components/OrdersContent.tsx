@@ -11,13 +11,8 @@ export const OrdersContent = ({ order,removeItem }: Props) => {
     <div>
       <h2 className="text-4xl font-black">Consumo</h2>
 
-      {order.length === 0 ? (
-        <p className="text-center text-2xl mt-10">
-          No hay elementos en el pedido
-        </p>
-      ) : (
         <div className="space-y-5 mt-10">
-          {order.map((item) => (
+          {order.map(item => (
             <div
               key={item.id}
               className="flex items-center justify-between border-t last-of-type:border-b border-slate-300 py-5"
@@ -40,7 +35,7 @@ export const OrdersContent = ({ order,removeItem }: Props) => {
             </div>
           ))}
         </div>
-      )}
+      
     </div>
   );
 };
